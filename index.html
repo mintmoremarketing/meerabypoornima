@@ -687,7 +687,9 @@
         letter-spacing: 1px;
         color: #fff;
         margin: 12px auto 0;
-        transition: color 0.25s, transform 0.25s;
+        transition:
+          color 0.25s,
+          transform 0.25s;
       }
       .insta-handle:hover {
         color: var(--gold);
@@ -699,6 +701,24 @@
         background: var(--dark);
         padding: 44px 40px 28px;
         color: rgba(255, 255, 255, 0.6);
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("assets/images/img-003.png") center bottom / auto 170px
+          repeat-x;
+        filter: brightness(0) invert(1);
+        opacity: 0.035;
+        pointer-events: none;
+        z-index: 0;
+      }
+      footer > * {
+        position: relative;
+        z-index: 1;
       }
       .foot-links {
         display: flex;
@@ -1078,7 +1098,8 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit Meera by Poornima Sharma on Instagram"
-      >#meerabypoornimasharma</a>
+        >#meerabypoornimasharma</a
+      >
     </section>
 
     <!-- FOOTER -->
