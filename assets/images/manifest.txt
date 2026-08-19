@@ -1,0 +1,16 @@
+source: meerabypoornimasharma.html
+embedded_matches_found: 14
+unique_data_uris_replaced: 10
+unique_files_created: 10
+
+file_list:
+- img-001.png (23871 bytes)
+- img-002.png (2956565 bytes)
+- img-003.png (19518 bytes)
+- img-004.png (549439 bytes)
+- img-005.png (420768 bytes)
+- img-006.png (336887 bytes)
+- img-007.png (135290 bytes)
+- img-008.png (178894 bytes)
+- img-009.png (179718 bytes)
+- img-010.png (144963 bytes)
