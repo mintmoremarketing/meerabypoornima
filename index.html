@@ -622,22 +622,51 @@
         background: #faf7f0;
         padding: 56px 32px 78px;
       }
-      .testi-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        max-width: 1120px;
+      .testi-wrap {
+        position: relative;
+        max-width: 1160px;
         margin: 0 auto;
+        padding: 0 60px;
       }
+      .testi-grid {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 6px 4px 14px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .testi-grid::-webkit-scrollbar { display: none; }
       .testi-card {
+        flex: 0 0 calc((100% - 40px) / 3);
         background: #fff;
         border: 1px solid #ece7db;
         padding: 24px 22px 20px;
         display: flex;
         flex-direction: column;
         position: relative;
+        min-height: 240px;
         transition: transform 0.25s, box-shadow 0.25s;
       }
+      .testi-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        background: #fff;
+        border: 1px solid #ece7db;
+        color: var(--goldbg);
+        width: 42px; height: 58px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        transition: background 0.2s, color 0.2s;
+      }
+      .testi-arrow:hover { background: var(--goldbg); color: #fff; }
+      .testi-prev { left: 6px; }
+      .testi-next { right: 6px; }
       .testi-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
@@ -694,11 +723,15 @@
         margin-top: 2px;
       }
       @media (max-width: 900px) {
-        .testi-grid { grid-template-columns: repeat(2, 1fr); }
+        .testi-wrap { padding: 0 42px; }
+        .testi-card { flex: 0 0 calc((100% - 20px) / 2); }
         .testi-sec { padding: 52px 20px 60px; }
       }
       @media (max-width: 600px) {
-        .testi-grid { grid-template-columns: 1fr; }
+        .testi-wrap { padding: 0 32px; }
+        .testi-card { flex: 0 0 100%; min-height: 220px; }
+        .testi-arrow { width: 32px; height: 48px; font-size: 18px; left: 2px; }
+        .testi-next { left: auto; right: 2px; }
       }
 
       /* TESTIMONIAL MODAL */
@@ -911,11 +944,14 @@
       .insta-handle {
         display: inline-block;
         font-family: "Allura", cursive;
-        font-size: clamp(46px, 7vw, 82px);
+        font-size: clamp(30px, 8vw, 82px);
         line-height: 1;
         letter-spacing: 1px;
         color: #fff;
         margin: 12px auto 0;
+        max-width: 100%;
+        padding: 0 8px;
+        word-break: break-word;
         transition:
           color 0.25s,
           transform 0.25s;
@@ -980,27 +1016,34 @@
         top: 50%;
         transform: translateY(-50%);
         z-index: 5;
-        background: rgba(255,255,255,0.92);
+        background: rgba(255,255,255,0.94);
         border: 1px solid rgba(0,0,0,0.08);
         color: var(--goldbg);
-        width: 44px; height: 60px;
+        width: 44px; height: 44px;
+        border-radius: 10px;
         display: flex; align-items: center; justify-content: center;
         cursor: pointer;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 1;
         box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-        transition: background 0.2s, color 0.2s;
+        transition: background 0.2s, color 0.2s, transform 0.15s;
       }
       .ig-arrow:hover { background: var(--goldbg); color: #fff; }
-      .ig-prev { left: 8px; }
-      .ig-next { right: 8px; }
+      .ig-arrow:active { transform: translateY(-50%) scale(0.94); }
+      .ig-prev { left: 12px; }
+      .ig-next { right: 12px; }
 
       @media (max-width: 700px) {
-        .ig-wrap { padding: 0 34px; }
-        .ig-cell { width: 82vw; max-width: 340px; height: 540px; }
-        .ig-fallback { width: 82vw; max-width: 340px; }
-        .ig-arrow { width: 36px; height: 50px; font-size: 20px; left: 2px; }
-        .ig-next { left: auto; right: 2px; }
+        .ig-wrap { padding: 0 12px; max-width: 100vw; }
+        .ig-track { gap: 14px; }
+        .ig-cell { width: min(86vw, 320px); height: min(560px, 148vw); }
+        .ig-fallback { width: min(86vw, 320px); }
+        .ig-arrow {
+          width: 32px; height: 44px; font-size: 18px;
+          left: 4px;
+          background: rgba(255,255,255,0.92);
+        }
+        .ig-next { left: auto; right: 4px; }
       }
 
       /* FOOTER */
@@ -1332,7 +1375,11 @@
       <p>Testimonials</p>
     </section>
     <section class="testi-sec">
-      <div class="testi-grid" id="testiGrid"></div>
+      <div class="testi-wrap">
+        <button class="testi-arrow testi-prev" id="testiPrev" aria-label="Previous">&#8249;</button>
+        <button class="testi-arrow testi-next" id="testiNext" aria-label="Next">&#8250;</button>
+        <div class="testi-grid" id="testiGrid"></div>
+      </div>
     </section>
 
     <!-- TESTIMONIAL MODAL -->
@@ -1668,6 +1715,52 @@
         document.querySelectorAll(".testi-card.reveal").forEach(function (el) {
           obs.observe(el);
         });
+
+        // TESTIMONIAL CAROUSEL — auto-advance + arrows
+        (function () {
+          var tGrid = document.getElementById("testiGrid");
+          var tNext = document.getElementById("testiNext");
+          var tPrev = document.getElementById("testiPrev");
+          if (!tGrid || !tNext || !tPrev) return;
+
+          function cardStep() {
+            var c = tGrid.querySelector(".testi-card");
+            return c ? c.getBoundingClientRect().width + 20 : 320;
+          }
+          function animateTGrid(to, dur) {
+            if (tGrid._anim) clearInterval(tGrid._anim);
+            var start = tGrid.scrollLeft, change = to - start, t0 = Date.now();
+            function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+            tGrid._anim = setInterval(function () {
+              var p = Math.min(1, (Date.now() - t0) / dur);
+              tGrid.scrollLeft = start + change * ease(p);
+              if (p >= 1) { clearInterval(tGrid._anim); tGrid._anim = null; }
+            }, 16);
+          }
+          function tNextFn() {
+            var max = tGrid.scrollWidth - tGrid.clientWidth;
+            var target = tGrid.scrollLeft + cardStep();
+            if (target > max - 4) target = 0;
+            animateTGrid(target, 460);
+          }
+          function tPrevFn() {
+            var max = tGrid.scrollWidth - tGrid.clientWidth;
+            var target = tGrid.scrollLeft - cardStep();
+            if (target < 0) target = max;
+            animateTGrid(target, 460);
+          }
+          tNext.addEventListener("click", function () { tNextFn(); resetAuto(); });
+          tPrev.addEventListener("click", function () { tPrevFn(); resetAuto(); });
+
+          var autoTimer = null;
+          function startAuto() { autoTimer = setInterval(tNextFn, 5000); }
+          function resetAuto() { clearInterval(autoTimer); startAuto(); }
+          startAuto();
+          tGrid.addEventListener("mouseenter", function () { clearInterval(autoTimer); });
+          tGrid.addEventListener("mouseleave", startAuto);
+          tGrid.addEventListener("touchstart", function () { clearInterval(autoTimer); }, { passive: true });
+          tGrid.addEventListener("touchend", function () { setTimeout(startAuto, 3000); }, { passive: true });
+        })();
 
         var mobBtn = document.getElementById("mobBtn");
         var mobDrop = document.getElementById("mobDrop");
