@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Meera by Poornima</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --gold: #b5a052;
+        --goldbg: #6f5939;
+        --olive: #6b5a28;
+        --dark: #1e1c17;
+        --text: #2c2c2c;
+        --mid: #555;
+        --light: #999;
+        --border: #e0ddd6;
+        --white: #fff;
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text);
+        background: var(--white);
+        font-size: 13px;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      a { text-decoration: none; color: inherit; }
+      img { display: block; max-width: 100%; }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.visible { opacity: 1; transform: none; }
+      .d1 { transition-delay: 0.1s; }
+      .d2 { transition-delay: 0.2s; }
+
+      /* NAVBAR */
+      nav {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      }
+      .nav-top { position: relative; text-align: center; padding: 10px 70px 0; }
+      .nav-logo { height: 56px; width: auto; margin: 0 auto; }
+      .nav-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0 8px;
+        margin-top: 8px;
+        border-top: 1px solid var(--border);
+        flex-wrap: nowrap;
+      }
+      .nav-main li { position: relative; }
+      .nav-main > li > a {
+        display: block;
+        padding: 8px 9px;
+        font-size: 10px;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+        color: var(--text);
+        font-weight: 500;
+        white-space: nowrap;
+        transition: color 0.2s;
+      }
+      .nav-main > li > a:hover,
+      .nav-main > li > a.active { color: var(--gold); }
+      .nav-main li:hover .drop { display: block; }
+      .drop {
+        display: none;
+        position: absolute;
+        top: 100%; left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border: 1px solid var(--border);
+        min-width: 168px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        z-index: 999;
+        text-align: center;
+      }
+      .drop a {
+        display: block;
+        padding: 9px 18px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 10px;
+        color: var(--gold);
+        letter-spacing: 0.8px;
+      }
+      .drop a:last-child { border-bottom: none; }
+      .drop a:hover { background: #faf8f2; }
+      .nav-mobile {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 16px;
+        border-top: 1px solid var(--border);
+      }
+      .nav-mob-links { display: flex; list-style: none; }
+      .nav-mob-links li a {
+        display: block;
+        padding: 6px 8px;
+        font-size: 9px;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--text);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .hamburger {
+        background: none;
+        border: 1px solid var(--border);
+        padding: 5px 11px;
+        cursor: pointer;
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-family: "Montserrat", sans-serif;
+      }
+      .mob-drop {
+        display: none;
+        position: absolute;
+        right: 16px; top: 100%;
+        background: #fff;
+        border: 1px solid var(--border);
+        min-width: 160px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        z-index: 999;
+        text-align: center;
+      }
+      .mob-drop.open { display: block; }
+      .mob-drop a {
+        display: block;
+        padding: 10px 18px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 10px;
+        color: var(--gold);
+        letter-spacing: 0.8px;
+      }
+      .mob-drop a:last-child { border-bottom: none; }
+      @media (max-width: 860px) {
+        .nav-main { display: none; }
+        .nav-mobile { display: flex; }
+      }
+
+      /* PAGE PLATE */
+      .page-plate {
+        background-color: #6F5939;
+        background-image: url("assets/images/img-003.png");
+        background-repeat: repeat-x;
+        background-position: center center;
+        background-size: auto 160px;
+        color: #fff;
+        text-align: center;
+        padding: 38px 24px 34px;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-plate::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #6F5939;
+        opacity: 0.9;
+      }
+      .page-plate > * { position: relative; z-index: 1; }
+      .page-plate h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+        font-size: 26px;
+        letter-spacing: 3px;
+        margin-bottom: 4px;
+      }
+      .page-plate p {
+        font-size: 10.5px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        opacity: 0.9;
+      }
+
+      /* CONTACT */
+      .contact-sec {
+        background: #faf7f0;
+        padding: 68px 32px 90px;
+      }
+      .contact-wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+      }
+      .c-intro {
+        margin-bottom: 26px;
+      }
+      .c-intro .lbl {
+        font-size: 10px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--light);
+        margin-bottom: 8px;
+      }
+      .c-intro h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 32px;
+        font-weight: 400;
+        color: var(--goldbg);
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+      .c-intro p {
+        font-size: 12px;
+        line-height: 2;
+        color: var(--mid);
+      }
+
+      .c-info-block {
+        margin-bottom: 24px;
+      }
+      .c-info-block h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--text);
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+      }
+      .c-info-block p, .c-info-block a {
+        font-size: 12px;
+        line-height: 1.9;
+        color: var(--mid);
+      }
+      .c-info-block a:hover { color: var(--gold); }
+
+      .c-socials {
+        display: flex;
+        gap: 14px;
+        margin-top: 22px;
+      }
+      .c-socials a {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--goldbg);
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+      }
+      .c-socials a:hover {
+        background: var(--goldbg);
+        border-color: var(--goldbg);
+        color: #fff;
+      }
+      .c-socials svg {
+        width: 18px; height: 18px;
+        fill: currentColor;
+      }
+
+      /* FORM */
+      .c-form {
+        background: #fff;
+        padding: 38px 40px;
+        border: 1px solid #ece7db;
+      }
+      .c-form h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--goldbg);
+        margin-bottom: 22px;
+        letter-spacing: 1px;
+      }
+      .c-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .c-field { display: flex; flex-direction: column; margin-bottom: 16px; }
+      .c-field label {
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--light);
+        margin-bottom: 6px;
+      }
+      .c-field input,
+      .c-field textarea {
+        border: none;
+        border-bottom: 1px solid var(--border);
+        background: transparent;
+        padding: 8px 0;
+        font-family: "Montserrat", sans-serif;
+        font-size: 13px;
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .c-field input:focus,
+      .c-field textarea:focus {
+        border-color: var(--goldbg);
+      }
+      .c-field textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+      .c-submit {
+        background: var(--goldbg);
+        color: #fff;
+        border: none;
+        padding: 12px 34px;
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 6px;
+        transition: background 0.2s;
+      }
+      .c-submit:hover { background: var(--gold); }
+      .c-note {
+        margin-top: 14px;
+        font-size: 11px;
+        color: var(--light);
+        min-height: 16px;
+      }
+      .c-note.ok { color: #4a7a3b; }
+
+      @media (max-width: 900px) {
+        .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+        .contact-sec { padding: 46px 20px 70px; }
+        .c-form { padding: 30px 24px; }
+        .c-row { grid-template-columns: 1fr; }
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--dark);
+        padding: 44px 40px 28px;
+        color: rgba(255,255,255,0.6);
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("assets/images/img-003.png") center bottom / auto 170px repeat-x;
+        filter: brightness(0) invert(1);
+        opacity: 0.035;
+        pointer-events: none;
+        z-index: 0;
+      }
+      footer > * { position: relative; z-index: 1; }
+      .foot-links {
+        display: flex; justify-content: center; gap: 40px;
+        margin-bottom: 24px; flex-wrap: wrap;
+      }
+      .foot-links a {
+        font-size: 11px; letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+        transition: color 0.2s;
+      }
+      .foot-links a:hover { color: var(--gold); }
+      .foot-copy {
+        text-align: center;
+        font-size: 10px;
+        color: rgba(255,255,255,0.28);
+        letter-spacing: 1px;
+      }
+      /* LARGE / 4K SCREENS */
+      @media (min-width: 1800px) {
+        body { font-size: 15px; }
+        .nav-top { padding: 14px 100px 0; }
+        .nav-logo { height: 72px; }
+        .nav-main > li > a { font-size: 12px; padding: 12px 14px; letter-spacing: 1.3px; }
+        .page-plate { padding: 52px 24px 44px; }
+        .page-plate h1 { font-size: 34px; letter-spacing: 4px; }
+        .page-plate p { font-size: 13px; letter-spacing: 4px; }
+        .contact-wrap { max-width: 1400px; gap: 80px; }
+        .c-intro h2 { font-size: 40px; }
+        .c-intro p, .c-info-block p, .c-info-block a { font-size: 14px; }
+        .c-info-block h3 { font-size: 20px; }
+        .c-socials a { width: 48px; height: 48px; }
+        .c-socials svg { width: 22px; height: 22px; }
+        .c-form { padding: 46px 52px; }
+        .c-field input, .c-field textarea { font-size: 15px; padding: 10px 0; }
+        .c-submit { font-size: 12px; padding: 14px 40px; letter-spacing: 4px; }
+        footer { padding: 64px 60px 40px; }
+        .foot-links a { font-size: 13px; }
+      }
+      @media (min-width: 2400px) {
+        body { font-size: 17px; }
+        .nav-logo { height: 88px; }
+        .contact-wrap { max-width: 1700px; }
+        .c-intro h2 { font-size: 48px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-top">
+        <a href="index.html">
+          <img class="nav-logo" src="assets/images/img-001.png" alt="Meera by Poornima Sharma" />
+        </a>
+      </div>
+      <ul class="nav-main">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pre-wedding.html">Pre Wedding Events</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-mobile">
+        <ul class="nav-mob-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pre-wedding.html">Pre Wedding</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <div style="position: relative">
+          <button class="hamburger" id="mobBtn">More &#9660;</button>
+          <div class="mob-drop" id="mobDrop">
+            <a href="index.html#testimonials">Testimonials</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE PLATE -->
+    <section class="page-plate">
+      <h1>Contact Us</h1>
+      <p>We Welcome Your Comments</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-sec">
+      <div class="contact-wrap">
+        <div class="c-left reveal">
+          <div class="c-intro">
+            <p class="lbl">Get in Touch</p>
+            <h2>Let’s Create Something Beautiful</h2>
+            <p>Whether you have a wedding to plan, a special occasion in mind, or simply want to say hello — I’d love to hear from you.</p>
+          </div>
+
+          <div class="c-info-block">
+            <h3>The Showroom</h3>
+            <p>Dundas NSW<br />Australia</p>
+          </div>
+
+          <div class="c-info-block">
+            <h3>Opening Hours</h3>
+            <p>By Appointment</p>
+          </div>
+
+          <div class="c-info-block">
+            <h3>Customer Service</h3>
+            <p><a href="mailto:meerabypoornimasharma@gmail.com">meerabypoornimasharma@gmail.com</a></p>
+          </div>
+
+          <div class="c-info-block">
+            <h3>Follow Along</h3>
+            <div class="c-socials">
+              <a href="http://instagram.com/meerabypoornimasharma" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.24 2.23.4a3.7 3.7 0 0 1 1.37.89 3.7 3.7 0 0 1 .89 1.37c.16.42.35 1.06.4 2.23.06 1.25.07 1.63.07 4.84s-.01 3.6-.07 4.85c-.05 1.17-.24 1.8-.4 2.23a3.97 3.97 0 0 1-2.26 2.26c-.42.16-1.06.35-2.23.4-1.25.06-1.63.07-4.85.07s-3.6-.01-4.85-.07c-1.17-.05-1.8-.24-2.23-.4a3.7 3.7 0 0 1-1.37-.89 3.7 3.7 0 0 1-.89-1.37c-.16-.42-.35-1.06-.4-2.23C2.2 15.6 2.2 15.22 2.2 12s0-3.6.07-4.85c.05-1.17.24-1.8.4-2.23.19-.51.47-.97.89-1.37.4-.42.86-.7 1.37-.89.42-.16 1.06-.35 2.23-.4C8.4 2.2 8.78 2.2 12 2.2Zm0 1.98c-3.15 0-3.53.01-4.77.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.26.83a3.4 3.4 0 0 0-.83 1.26c-.15.39-.33.97-.38 2.04C2.66 9.05 2.65 9.43 2.65 12s.01 2.95.07 4.19c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.26.38.39.75.63 1.26.83.39.15.97.33 2.04.38 1.24.06 1.62.07 4.77.07s3.53-.01 4.77-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.26-.83.39-.38.63-.75.83-1.26.15-.39.33-.97.38-2.04.06-1.24.07-1.62.07-4.19s-.01-2.95-.07-4.19c-.05-1.07-.23-1.65-.38-2.04a3.4 3.4 0 0 0-.83-1.26 3.4 3.4 0 0 0-1.26-.83c-.39-.15-.97-.33-2.04-.38-1.24-.06-1.62-.07-4.77-.07ZM12 6.87a5.13 5.13 0 1 1 0 10.26 5.13 5.13 0 0 1 0-10.26Zm0 1.98a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.34-2.17a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/>
+                </svg>
+              </a>
+              <a href="http://www.facebook.com/meerabypoornimasharma" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+                <svg viewBox="0 0 24 24">
+                  <path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.26-1.5 1.55-1.5h1.65V3.3a22 22 0 0 0-2.4-.13c-2.4 0-4 1.46-4 4.14v2.5H7.6V13h2.7v8h3.2Z"/>
+                </svg>
+              </a>
+              <a href="https://youtu.be/OsYqa6d1orY" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+                <svg viewBox="0 0 24 24">
+                  <path d="M23.5 7.05a3 3 0 0 0-2.11-2.12C19.53 4.4 12 4.4 12 4.4s-7.53 0-9.39.53A3 3 0 0 0 .5 7.05C0 8.9 0 12 0 12s0 3.1.5 4.95a3 3 0 0 0 2.11 2.12c1.86.53 9.39.53 9.39.53s7.53 0 9.39-.53a3 3 0 0 0 2.11-2.12C24 15.1 24 12 24 12s0-3.1-.5-4.95ZM9.6 15.6V8.4l6.24 3.6-6.24 3.6Z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="c-form reveal d1" id="contactForm" novalidate>
+          <h3>Send Us a Message</h3>
+          <div class="c-row">
+            <div class="c-field">
+              <label for="cf-first">First Name</label>
+              <input type="text" id="cf-first" name="firstName" required />
+            </div>
+            <div class="c-field">
+              <label for="cf-last">Last Name</label>
+              <input type="text" id="cf-last" name="lastName" required />
+            </div>
+          </div>
+          <div class="c-row">
+            <div class="c-field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" required />
+            </div>
+            <div class="c-field">
+              <label for="cf-phone">Phone (Optional)</label>
+              <input type="tel" id="cf-phone" name="phone" />
+            </div>
+          </div>
+          <div class="c-field">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" />
+          </div>
+          <div class="c-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="c-submit">Send Message</button>
+          <p class="c-note" id="cfNote"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="foot-links reveal">
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <p class="foot-copy reveal d1">&copy; 2025 Meera by Poornima Sharma</p>
+    </footer>
+
+    <script>
+      (function () {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll(".reveal").forEach(function (el) { obs.observe(el); });
+
+        var mobBtn = document.getElementById("mobBtn");
+        var mobDrop = document.getElementById("mobDrop");
+        if (mobBtn) {
+          mobBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            mobDrop.classList.toggle("open");
+          });
+          document.addEventListener("click", function () { mobDrop.classList.remove("open"); });
+        }
+
+        var form = document.getElementById("contactForm");
+        var note = document.getElementById("cfNote");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var data = new FormData(form);
+          var required = ["firstName", "lastName", "email", "message"];
+          for (var i = 0; i < required.length; i++) {
+            if (!String(data.get(required[i]) || "").trim()) {
+              note.className = "c-note";
+              note.textContent = "Please fill in all required fields.";
+              return;
+            }
+          }
+          // Open the user's mail client with a pre-filled message
+          var body = "From: " + data.get("firstName") + " " + data.get("lastName") +
+            "\nEmail: " + data.get("email") +
+            "\nPhone: " + (data.get("phone") || "-") +
+            "\n\n" + (data.get("message") || "");
+          var subject = data.get("subject") || "Message from meerabypoornimasharma.com";
+          window.location.href = "mailto:meerabypoornimasharma@gmail.com" +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
+          note.className = "c-note ok";
+          note.textContent = "Opening your email app…";
+        });
+      })();
+    </script>
+  </body>
+</html>
