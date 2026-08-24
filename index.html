@@ -635,9 +635,11 @@
         padding: 6px 4px 14px;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        scroll-snap-type: x proximity;
       }
       .testi-grid::-webkit-scrollbar { display: none; }
       .testi-card {
+        scroll-snap-align: start;
         flex: 0 0 calc((100% - 40px) / 3);
         background: #fff;
         border: 1px solid #ece7db;
@@ -656,17 +658,19 @@
         background: #fff;
         border: 1px solid #ece7db;
         color: var(--goldbg);
-        width: 42px; height: 58px;
+        width: 44px; height: 44px;
+        border-radius: 10px;
         display: flex; align-items: center; justify-content: center;
         cursor: pointer;
-        font-size: 22px;
+        font-size: 20px;
         line-height: 1;
         box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        transition: background 0.2s, color 0.2s;
+        transition: background 0.2s, color 0.2s, transform 0.15s;
       }
       .testi-arrow:hover { background: var(--goldbg); color: #fff; }
-      .testi-prev { left: 6px; }
-      .testi-next { right: 6px; }
+      .testi-arrow:active { transform: translateY(-50%) scale(0.94); }
+      .testi-prev { left: 8px; }
+      .testi-next { right: 8px; }
       .testi-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
@@ -728,9 +732,14 @@
         .testi-sec { padding: 52px 20px 60px; }
       }
       @media (max-width: 600px) {
-        .testi-wrap { padding: 0 32px; }
+        .testi-wrap { padding: 0 40px; }
         .testi-card { flex: 0 0 100%; min-height: 220px; }
-        .testi-arrow { width: 32px; height: 48px; font-size: 18px; left: 2px; }
+        .testi-arrow {
+          width: 34px; height: 34px;
+          border-radius: 10px;
+          font-size: 18px;
+          left: 2px;
+        }
         .testi-next { left: auto; right: 2px; }
       }
 
