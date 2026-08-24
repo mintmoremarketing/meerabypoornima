@@ -1051,14 +1051,20 @@
       .ig-next { right: 12px; }
 
       @media (max-width: 700px) {
-        .ig-wrap { padding: 0 12px; max-width: 100vw; }
-        .ig-track { gap: 14px; }
-        .ig-cell { width: min(86vw, 320px); height: min(560px, 148vw); }
-        .ig-fallback { width: min(86vw, 320px); }
+        .ig-wrap { padding: 0 44px; max-width: 100vw; overflow: hidden; }
+        .ig-track { gap: 12px; scroll-padding: 0; padding-left: 4px; padding-right: 4px; }
+        .ig-cell {
+          width: min(74vw, 300px);
+          height: min(520px, 140vw);
+          scroll-snap-align: center;
+        }
+        .ig-fallback { width: min(74vw, 300px); }
         .ig-arrow {
-          width: 32px; height: 44px; font-size: 18px;
+          width: 34px; height: 34px;
+          border-radius: 10px;
+          font-size: 18px;
           left: 4px;
-          background: rgba(255,255,255,0.92);
+          background: rgba(255,255,255,0.94);
         }
         .ig-next { left: auto; right: 4px; }
       }
