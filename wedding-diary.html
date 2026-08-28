@@ -616,7 +616,8 @@
                   "assets/images/wedding-2022/garry-04.jpg",
                   "assets/images/wedding-2022/garry-05.jpg",
                   "assets/images/wedding-2022/garry-06.jpg",
-                  "assets/images/wedding-2022/garry-07.jpg"
+                  "assets/images/wedding-2022/garry-07.jpg",
+                  "assets/images/wedding-2022/garry-08.jpg"
                 ]
               },
               {
@@ -626,11 +627,7 @@
                   "<strong>Bride:</strong> Kriti has a very unique style of her own — and it definitely reflects her gorgeous, fun-filled personality. I designed an Anarkali Gherra top in Taffetta Silk with Banarasi borders, a Brocade Silk Lehenga, and a Pure Georgette Duppatta with pearls and Banarasi Gotta borders.",
                   "<strong>Jewellery:</strong> For the head piece we made a German Silver / Brass mix Silver Tikka with Durga carvings. For her feet, I designed a heavy-base German Silver Anklet with a touch of Chittai work."
                 ],
-                photos: [
-                  "assets/images/wedding-2022/kriti-01.jpg",
-                  "assets/images/wedding-2022/kriti-02.jpg",
-                  "assets/images/wedding-2022/kriti-03.jpg"
-                ]
+                photos: []
               },
               {
                 name: "Nish & Bavati",
@@ -642,15 +639,7 @@
                   "<strong>Groom:</strong> Loved designing Nish’s outfit — he is one of the most stylish grooms I’ve come across so far. He knew exactly what he wanted for his special events. In fact he made sure to come specially one day to learn how I style his Duppatta / Shawl for his Sangeet and Wedding.",
                   "I designed Nish’s Kurta and Nehru Jacket in Pure Silk with Gold Zari Piping, paired with a Cotton Silk Churidaar. The Duppatta / Shawl was Kashmiri Embroidered Pure Georgette with Gold Zari backing."
                 ],
-                photos: [
-                  "assets/images/wedding-2022/nish-01.jpg",
-                  "assets/images/wedding-2022/nish-02.jpg",
-                  "assets/images/wedding-2022/nish-03.jpg",
-                  "assets/images/wedding-2022/nish-04.jpg",
-                  "assets/images/wedding-2022/nish-05.jpg",
-                  "assets/images/wedding-2022/nish-06.jpg",
-                  "assets/images/wedding-2022/nish-07.jpg"
-                ]
+                photos: []
               },
               {
                 name: "Raman Weds Mithun",
@@ -670,7 +659,12 @@
                   "assets/images/wedding-2022/raman-03.jpg",
                   "assets/images/wedding-2022/raman-04.jpg",
                   "assets/images/wedding-2022/raman-05.jpg",
-                  "assets/images/wedding-2022/raman-06.jpg"
+                  "assets/images/wedding-2022/raman-06.jpg",
+                  "assets/images/wedding-2022/raman-07.jpg",
+                  "assets/images/wedding-2022/raman-08.jpg",
+                  "assets/images/wedding-2022/raman-09.jpg",
+                  "assets/images/wedding-2022/raman-10.jpg",
+                  "assets/images/wedding-2022/raman-11.jpg"
                 ]
               },
               {
@@ -684,7 +678,11 @@
                 ],
                 photos: [
                   "assets/images/wedding-2022/tiesha-01.jpg",
-                  "assets/images/wedding-2022/tiesha-02.jpg"
+                  "assets/images/wedding-2022/tiesha-02.jpg",
+                  "assets/images/wedding-2022/tiesha-03.jpg",
+                  "assets/images/wedding-2022/tiesha-04.jpg",
+                  "assets/images/wedding-2022/tiesha-05.jpg",
+                  "assets/images/wedding-2022/tiesha-06.jpg"
                 ]
               }
             ]
@@ -755,15 +753,17 @@
             c.copy.forEach(function (p) { html += '<p>' + p + '</p>'; });
             html += '</div>';
           }
-          html +=   '<div class="gal-wrap reveal">';
-          html +=     '<button class="gal-btn gal-prev" data-dir="-1" data-target="couple-' + idx + '" aria-label="Previous">&#8249;</button>';
-          html +=     '<button class="gal-btn gal-next" data-dir="1" data-target="couple-' + idx + '" aria-label="Next">&#8250;</button>';
-          html +=     '<div class="gallery" data-gallery="couple-' + idx + '">';
-          c.photos.forEach(function (src, i) {
-            html += '<div class="gal-item"><img src="' + esc(src) + '" alt="' + esc(c.name) + ' ' + (i + 1) + '" /></div>';
-          });
-          html +=     '</div>';
-          html +=   '</div>';
+          if (c.photos && c.photos.length) {
+            html +=   '<div class="gal-wrap reveal">';
+            html +=     '<button class="gal-btn gal-prev" data-dir="-1" data-target="couple-' + idx + '" aria-label="Previous">&#8249;</button>';
+            html +=     '<button class="gal-btn gal-next" data-dir="1" data-target="couple-' + idx + '" aria-label="Next">&#8250;</button>';
+            html +=     '<div class="gallery" data-gallery="couple-' + idx + '">';
+            c.photos.forEach(function (src, i) {
+              html += '<div class="gal-item"><img src="' + esc(src) + '" alt="' + esc(c.name) + ' ' + (i + 1) + '" /></div>';
+            });
+            html +=     '</div>';
+            html +=   '</div>';
+          }
           html += '</section>';
         });
 
