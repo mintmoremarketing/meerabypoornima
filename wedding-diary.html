@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Diary | Meera by Poornima</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --gold: #b5a052;
+        --goldbg: #6f5939;
+        --olive: #6b5a28;
+        --dark: #1e1c17;
+        --text: #2c2c2c;
+        --mid: #555;
+        --light: #999;
+        --border: #e0ddd6;
+        --white: #fff;
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text);
+        background: var(--white);
+        font-size: 13px;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      a { text-decoration: none; color: inherit; }
+      img { display: block; max-width: 100%; }
+      .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.visible { opacity: 1; transform: none; }
+      .d1 { transition-delay: .1s; }
+      .d2 { transition-delay: .2s; }
+
+      /* NAV */
+      nav {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky; top: 0; z-index: 1000;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      }
+      .nav-top { position: relative; text-align: center; padding: 10px 70px 0; }
+      .nav-logo { height: 56px; width: auto; margin: 0 auto; }
+      .nav-main {
+        display: flex; justify-content: center; align-items: center;
+        list-style: none; padding: 0 8px; margin-top: 8px;
+        border-top: 1px solid var(--border); flex-wrap: nowrap;
+      }
+      .nav-main li { position: relative; }
+      .nav-main > li > a {
+        display: block; padding: 8px 9px; font-size: 10px;
+        letter-spacing: 1.1px; text-transform: uppercase;
+        color: var(--text); font-weight: 500; white-space: nowrap;
+        transition: color .2s;
+      }
+      .nav-main > li > a:hover,
+      .nav-main > li > a.active { color: var(--gold); }
+      .nav-main li:hover .drop { display: block; }
+      .drop {
+        display: none; position: absolute; top: 100%; left: 50%;
+        transform: translateX(-50%);
+        background: #fff; border: 1px solid var(--border);
+        min-width: 168px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        z-index: 999; text-align: center;
+      }
+      .drop a {
+        display: block; padding: 9px 18px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 10px; color: var(--gold); letter-spacing: 0.8px;
+      }
+      .drop a:last-child { border-bottom: none; }
+      .drop a:hover { background: #faf8f2; }
+      .nav-mobile {
+        display: none; align-items: center; justify-content: space-between;
+        padding: 8px 16px; border-top: 1px solid var(--border);
+      }
+      .nav-mob-links { display: flex; list-style: none; }
+      .nav-mob-links li a {
+        display: block; padding: 6px 8px; font-size: 9px;
+        letter-spacing: 0.9px; text-transform: uppercase;
+        color: var(--text); font-weight: 500; white-space: nowrap;
+      }
+      .hamburger {
+        background: none; border: 1px solid var(--border);
+        padding: 5px 11px; cursor: pointer;
+        font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+        color: var(--gold); font-family: "Montserrat", sans-serif;
+      }
+      .mob-drop {
+        display: none; position: absolute; right: 0; top: 100%;
+        background: #fff; border: 1px solid var(--border);
+        min-width: 160px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        z-index: 999; text-align: center;
+      }
+      .mob-drop.open { display: block; }
+      .mob-drop a {
+        display: block; padding: 10px 18px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 10px; color: var(--gold); letter-spacing: 0.8px;
+      }
+      .mob-drop a:last-child { border-bottom: none; }
+      @media (max-width: 860px) {
+        .nav-main { display: none; }
+        .nav-mobile { display: flex; }
+      }
+
+      /* PAGE PLATE */
+      .page-plate {
+        background-color: #6F5939;
+        background-image: url("assets/images/img-003.png");
+        background-repeat: repeat-x;
+        background-position: center center;
+        background-size: auto 160px;
+        color: #fff;
+        text-align: center;
+        padding: 38px 24px 34px;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-plate::before {
+        content: ""; position: absolute; inset: 0;
+        background: #6F5939; opacity: 0.9;
+      }
+      .page-plate > * { position: relative; z-index: 1; }
+      .page-plate h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400; font-size: 26px;
+        letter-spacing: 3px; margin-bottom: 4px;
+      }
+      .page-plate p {
+        font-size: 10.5px; letter-spacing: 3px;
+        text-transform: uppercase; opacity: .9;
+      }
+
+      /* YEAR SWITCHER */
+      .year-tabs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 18px 20px 8px;
+        background: #faf7f0;
+        border-bottom: 1px solid #ece7db;
+      }
+      .year-tab {
+        font-size: 10.5px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--mid);
+        padding: 8px 16px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        transition: color .2s, background .2s, border-color .2s;
+      }
+      .year-tab:hover { color: var(--goldbg); border-color: var(--border); background: #fff; }
+      .year-tab.active {
+        color: #fff;
+        background: var(--goldbg);
+        border-color: var(--goldbg);
+      }
+      .year-tab.disabled {
+        color: #bbb;
+        cursor: not-allowed;
+      }
+
+      /* HERO */
+      .page-hero {
+        width: 100%;
+        max-height: 640px;
+        overflow: hidden;
+      }
+      .page-hero img {
+        width: 100%; height: auto;
+        max-height: 640px;
+        object-fit: cover;
+        object-position: center 30%;
+        cursor: zoom-in;
+      }
+
+      /* QUOTE */
+      .quote-block {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 54px 24px 40px;
+        text-align: center;
+      }
+      .quote-script {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-weight: 300;
+        font-size: clamp(20px, 2.6vw, 26px);
+        color: var(--text);
+        line-height: 1.55;
+        letter-spacing: 0.3px;
+        margin-bottom: 22px;
+      }
+      .quote-sub {
+        font-size: 11.5px;
+        line-height: 2;
+        color: var(--mid);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* SHOOT SECTIONS */
+      .shoot {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 24px 24px 60px;
+      }
+      .shoot-title {
+        text-align: center;
+        font-family: "Great Vibes", "Allura", cursive;
+        font-size: clamp(42px, 6vw, 66px);
+        color: var(--goldbg);
+        line-height: 1.1;
+        margin-bottom: 6px;
+      }
+      .shoot-sub {
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: var(--text);
+        margin-bottom: 32px;
+      }
+      .shoot-copy {
+        max-width: 820px;
+        margin: 0 auto 34px;
+        color: var(--mid);
+        font-size: 12px;
+        line-height: 2;
+      }
+      .shoot-copy p { margin-bottom: 12px; }
+      .shoot-copy strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* HORIZONTAL CAROUSEL GALLERY */
+      .gal-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+      .gallery {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 4px 0 12px;
+      }
+      .gallery::-webkit-scrollbar { display: none; }
+      .gal-item {
+        position: relative;
+        overflow: hidden;
+        cursor: zoom-in;
+        background: #f3efe8;
+        flex: 0 0 auto;
+        width: 260px;
+        aspect-ratio: 3/4;
+      }
+      .gal-item img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.45s ease;
+      }
+      .gal-item:hover img { transform: scale(1.05); }
+      .gal-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        background: rgba(255,255,255,0.94);
+        border: 1px solid rgba(0,0,0,0.08);
+        color: var(--goldbg);
+        width: 44px; height: 44px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        font-size: 22px; line-height: 1;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        transition: background .2s, color .2s;
+      }
+      .gal-btn:hover { background: var(--goldbg); color: #fff; }
+      .gal-prev { left: 6px; }
+      .gal-next { right: 6px; }
+      @media (max-width: 900px) { .gal-item { width: 220px; } }
+      @media (max-width: 600px) {
+        .gal-item { width: 78vw; max-width: 320px; }
+        .gal-btn { width: 36px; height: 36px; font-size: 18px; }
+      }
+
+      /* LIGHTBOX */
+      .lb {
+        position: fixed; inset: 0;
+        background: rgba(10, 8, 6, 0.96);
+        z-index: 5000;
+        display: none;
+        align-items: center; justify-content: center;
+        touch-action: pan-y;
+      }
+      .lb.open { display: flex; }
+      .lb-stage {
+        position: relative;
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+        padding: 40px 60px;
+      }
+      .lb-img {
+        max-width: 100%; max-height: 100%;
+        object-fit: contain;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        user-select: none;
+        transition: opacity 0.25s ease;
+      }
+      .lb-img.swapping { opacity: 0; }
+      .lb-close, .lb-arrow {
+        position: absolute; color: #fff;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        z-index: 10;
+      }
+      .lb-close {
+        top: 14px; right: 18px;
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        font-size: 20px; line-height: 1;
+      }
+      .lb-close:hover { background: rgba(255,255,255,0.22); }
+      .lb-arrow {
+        top: 50%; transform: translateY(-50%);
+        width: 54px; height: 68px;
+        font-size: 30px; line-height: 1;
+      }
+      .lb-arrow:hover { background: rgba(255,255,255,0.22); }
+      .lb-prev { left: 18px; }
+      .lb-next { right: 18px; }
+      .lb-count {
+        position: absolute; bottom: 18px; left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.7);
+        font-size: 11px; letter-spacing: 3px;
+        z-index: 10;
+      }
+      @media (max-width: 700px) {
+        .lb-stage { padding: 60px 12px 60px; }
+        .lb-arrow { width: 40px; height: 52px; font-size: 22px; background: rgba(255,255,255,0.12); }
+        .lb-prev { left: 6px; }
+        .lb-next { right: 6px; }
+        .lb-close { top: 10px; right: 10px; width: 38px; height: 38px; }
+      }
+
+      /* EMPTY STATE (for years without content) */
+      .empty-state {
+        max-width: 620px;
+        margin: 60px auto;
+        text-align: center;
+        padding: 60px 30px;
+        border: 1px dashed var(--border);
+      }
+      .empty-state h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        color: var(--goldbg);
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+      .empty-state p {
+        color: var(--mid);
+        font-size: 12.5px;
+        line-height: 1.9;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--dark);
+        padding: 44px 40px 28px;
+        color: rgba(255,255,255,0.6);
+        position: relative; isolation: isolate; overflow: hidden;
+      }
+      footer::before {
+        content: "";
+        position: absolute; inset: 0;
+        background: url("assets/images/img-003.png") center bottom / auto 170px repeat-x;
+        filter: brightness(0) invert(1);
+        opacity: 0.035;
+        pointer-events: none;
+        z-index: 0;
+      }
+      footer > * { position: relative; z-index: 1; }
+      .foot-links {
+        display: flex; justify-content: center; gap: 40px;
+        margin-bottom: 24px; flex-wrap: wrap;
+      }
+      .foot-links a {
+        font-size: 11px; letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+        transition: color .2s;
+      }
+      .foot-links a:hover { color: var(--gold); }
+      .foot-copy {
+        text-align: center; font-size: 10px;
+        color: rgba(255,255,255,0.28); letter-spacing: 1px;
+      }
+
+      /* LARGE / 4K */
+      @media (min-width: 1800px) {
+        body { font-size: 15px; }
+        .nav-top { padding: 14px 100px 0; }
+        .nav-logo { height: 72px; }
+        .nav-main > li > a { font-size: 12px; padding: 12px 14px; }
+        .page-plate { padding: 52px 24px 44px; }
+        .page-plate h1 { font-size: 34px; letter-spacing: 4px; }
+        .page-plate p { font-size: 13px; }
+        .year-tab { font-size: 12px; padding: 10px 20px; }
+        .page-hero { max-height: 900px; }
+        .page-hero img { max-height: 900px; }
+        .quote-block { max-width: 1100px; padding: 74px 24px 54px; }
+        .shoot { max-width: 1500px; padding: 34px 24px 80px; }
+        .shoot-copy { font-size: 14px; max-width: 1000px; }
+        .gal-item { width: 340px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-top">
+        <a href="index.html">
+          <img class="nav-logo" src="assets/images/img-001.png" alt="Meera by Poornima Sharma" />
+        </a>
+      </div>
+      <ul class="nav-main">
+        <li><a href="index.html">Home</a></li>
+        <li>
+          <a href="#" class="active">Wedding Diaries</a>
+          <div class="drop">
+            <a href="wedding-diary.html?year=2021">2021 Wedding Diary</a>
+            <a href="wedding-diary.html?year=2022">2022 Wedding Diary</a>
+            <a href="wedding-diary.html?year=2023">2023 Wedding Diary</a>
+            <a href="wedding-diary.html?year=2024">2024 Wedding Diary</a>
+            <a href="wedding-diary.html?year=2025">2025 Wedding Diary</a>
+          </div>
+        </li>
+        <li><a href="pre-wedding.html">Pre Wedding Events</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-mobile">
+        <ul class="nav-mob-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pre-wedding.html">Pre Wedding</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <div style="position: relative">
+          <button class="hamburger" id="mobBtn">More &#9660;</button>
+          <div class="mob-drop" id="mobDrop">
+            <a href="wedding-diary.html?year=2025">Wedding Diaries</a>
+            <a href="index.html#testimonials">Testimonials</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE PLATE (title + subtitle populated by JS) -->
+    <section class="page-plate">
+      <h1 id="plateTitle">Wedding Diary</h1>
+      <p id="plateSub">Traditional with bold vibes</p>
+    </section>
+
+    <!-- YEAR TABS -->
+    <div class="year-tabs" id="yearTabs"></div>
+
+    <!-- YEAR CONTENT (populated by JS) -->
+    <div id="yearContent"></div>
+
+    <!-- LIGHTBOX -->
+    <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <div class="lb-stage">
+        <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+        <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+        <img class="lb-img" id="lbImg" alt="" />
+        <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+        <div class="lb-count" id="lbCount"></div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="foot-links">
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <p class="foot-copy">&copy; 2025 Meera by Poornima Sharma</p>
+    </footer>
+
+    <script>
+      (function () {
+        // ----- DATA -----
+        var YEARS = {
+          "2021": {
+            title: "Wedding Diary 2021",
+            subtitle: "Traditional with bold vibes",
+            hero: "assets/images/wedding-2021/hero.jpg",
+            quote: "“In the arithmetic of LOVE, one plus one equals everything, and two minus one equals nothing.”",
+            quoteSub: "So when I am asked to design, I’m thinking Minimalist and Romantic but like, Vintage without being Gatsby and slightly Boho, Sexy, Traditional but with Exclusive Bold vibes… Poornima Sharma",
+            couples: [
+              {
+                name: "Jyoti weds Prav",
+                sub: "Sangeeth · Wedding · Bridal Party",
+                copy: [
+                  "<strong>Sangeeth:</strong> Jyoti chose to wear Pure Handcrafted Cotton Silk Lehenga with Gold Zari thick borders, with Gold Latkans and a Pure Banarasi Blouse with Katan Silk Banarasi Duppatta.",
+                  "<strong>Bride:</strong> For her wedding Jyoti chose to wear Handcrafted Khadi Silk Lehenga with Pure Banarasi Khadi Silk Blouse and Pure Tissue Silk Duppatta with Khichdi Borders.",
+                  "<strong>Groom:</strong> Prav chose to wear Khimkhab Handcrafted Silk Kurta with Cotton Silk Churidaar and Pure Georgette Kashmiri Embroidery Duppatta / Shawl.",
+                  "<strong>Bridesmaids:</strong> One wore a Handcrafted Blockprint Cotton Lehenga with Gold Borders, Net Sequins Duppatta and a Sequins-padded Antique Gold Blouse. The second wore Georgette Sequins Sharara with Antique Gold Sequins Blouse and Georgette Net Embroidery Duppatta.",
+                  "<strong>Bride’s Brother:</strong> Pure Linen Silk Kurta with Gold Kinari, Cotton Silk Dhotti and Kashmiri Embroidery Georgette Duppatta / Shawl.",
+                  "<em>Photography:</em> Kartik Sharma"
+                ],
+                photos: [
+                  "assets/images/wedding-2021/jyoti-01.jpg",
+                  "assets/images/wedding-2021/jyoti-02.jpg",
+                  "assets/images/wedding-2021/jyoti-03.jpg",
+                  "assets/images/wedding-2021/jyoti-04.jpg",
+                  "assets/images/wedding-2021/jyoti-05.jpg",
+                  "assets/images/wedding-2021/jyoti-06.jpg"
+                ]
+              },
+              {
+                name: "Amritbir weds Yadwinder",
+                sub: "Reception",
+                copy: [
+                  "Amritbir is a gorgeous, simple girl who wanted to look unique, sexy, classy — yet an artistic Punjabi bride for her reception.",
+                  "I designed for her a Taffetta Silk Kalidaar Lehenga with Antique Gold Gotta work, Multicoloured Tussar Silk Embroidery Choli Blouse with Gold Latkans (Thread Ties), and a Pure Chiffon Duppatta with Antique Gotta and Kirans.",
+                  "Instead of wearing the typical gold jewellery, I got her to wear a German Silver / Brass Choker set with a Kundan Passa on the side of her head.",
+                  "<em>Photography:</em> Balzinder Balz"
+                ],
+                photos: [
+                  "assets/images/wedding-2021/amritbir-01.jpg",
+                  "assets/images/wedding-2021/amritbir-02.jpg",
+                  "assets/images/wedding-2021/amritbir-03.jpg",
+                  "assets/images/wedding-2021/amritbir-04.jpg",
+                  "assets/images/wedding-2021/amritbir-05.jpg",
+                  "assets/images/wedding-2021/amritbir-06.jpg"
+                ]
+              },
+              {
+                name: "Ajooni weds Gurnam",
+                sub: "Wedding Reception",
+                copy: [
+                  "Ajooni connected with me through Zoom while she lived in India. She fell in love with my designs and my brand the minute her husband Gurnam (who lives in Sydney) showed her my page and my style.",
+                  "Ajooni wanted to wear a Saree for her Wedding Reception. Unlike Punjabi brides who normally don’t much wear sarees, she felt she wanted to look unique and exclusive. So I designed her a Gold Banarasi Silk Saree with Antique Gold Beads all around the borders and paired it with a Pure Banarasi Silk Blouse with Latkans (Thread Ties).",
+                  "She did not only nail the look but carried the saree so beautifully."
+                ],
+                photos: [
+                  "assets/images/wedding-2021/ajooni-01.jpg",
+                  "assets/images/wedding-2021/ajooni-02.jpg",
+                  "assets/images/wedding-2021/ajooni-03.jpg",
+                  "assets/images/wedding-2021/ajooni-04.jpg"
+                ]
+              },
+              {
+                name: "Kersha & Thinesh",
+                sub: "Traditional Wedding",
+                copy: [
+                  "<strong>Thinesh (Groom):</strong> I designed his Kurta top in Cotton Silk with Gold Zari backing and Zardozi-mix Gotta work neckline. His Dhotti was in Tussar Silk. To complete the aesthetics of the whole outfit I designed his Duppatta / Shawl in Kashmiri Georgette with Gold thread works and Gold Zari backing.",
+                  "<strong>Look 1 — Kersha (Bride):</strong> Handcrafted Banarasi Silk Saree (Bottle / Emerald Green) with Zardozi / Banarasi Borders and Pure Silk Blouse with Dabka / Zardozi Embroidery. We chose Kundan and semi-precious-stone Temple Jewellery to complement the Saree’s Zardozi borders.",
+                  "<strong>Look 2:</strong> Kersha chose to wear her own Saree, which I paired with a Pure Banarasi Jali-work Red Blouse and matched with Antique Gold Temple Jewellery."
+                ],
+                photos: [
+                  "assets/images/wedding-2021/kersha-01.jpg",
+                  "assets/images/wedding-2021/kersha-02.jpg",
+                  "assets/images/wedding-2021/kersha-03.jpg",
+                  "assets/images/wedding-2021/kersha-04.jpg",
+                  "assets/images/wedding-2021/kersha-05.jpg",
+                  "assets/images/wedding-2021/kersha-06.jpg",
+                  "assets/images/wedding-2021/kersha-07.jpg",
+                  "assets/images/wedding-2021/kersha-08.jpg",
+                  "assets/images/wedding-2021/kersha-09.jpg"
+                ]
+              }
+            ]
+          }
+          // 2022 / 2023 / 2024 / 2025 not yet added — the page will render a
+          // "coming soon" placeholder for those years.
+        };
+        var ORDER = ["2021", "2022", "2023", "2024", "2025"];
+
+        function esc(s) {
+          return String(s).replace(/[&<>"']/g, function (c) {
+            return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+          });
+        }
+
+        // ----- ROUTE -----
+        var params = new URLSearchParams(location.search);
+        var year = params.get("year") || "2021";
+        if (!ORDER.includes(year)) year = "2021";
+
+        // ----- YEAR TABS -----
+        var tabs = document.getElementById("yearTabs");
+        ORDER.forEach(function (y) {
+          var a = document.createElement("a");
+          a.className = "year-tab" + (y === year ? " active" : "");
+          if (!YEARS[y]) a.className += " disabled";
+          a.href = "wedding-diary.html?year=" + y;
+          a.textContent = y;
+          tabs.appendChild(a);
+        });
+
+        // ----- CONTENT -----
+        var contentEl = document.getElementById("yearContent");
+        var data = YEARS[year];
+
+        if (!data) {
+          document.getElementById("plateTitle").textContent = "Wedding Diary " + year;
+          document.getElementById("plateSub").textContent = "Coming Soon";
+          document.title = "Wedding Diary " + year + " | Meera by Poornima";
+          contentEl.innerHTML =
+            '<div class="empty-state">' +
+              '<h2>Wedding Diary ' + year + '</h2>' +
+              '<p>The ' + year + ' diary is being curated. Please check back soon — or explore the ' +
+              '<a href="wedding-diary.html?year=2021" style="color:var(--goldbg); border-bottom:1px solid var(--goldbg);">2021 diary</a> in the meantime.</p>' +
+            '</div>';
+          return;
+        }
+
+        // Populate plate
+        document.getElementById("plateTitle").textContent = data.title;
+        document.getElementById("plateSub").textContent = data.subtitle;
+        document.title = data.title + " | Meera by Poornima";
+
+        // Build hero + quote + couple sections
+        var html = '';
+        html += '<div class="page-hero"><img src="' + esc(data.hero) + '" alt="' + esc(data.title) + '" data-lb="hero" /></div>';
+        html += '<section class="quote-block">' +
+                  '<p class="quote-script reveal">' + esc(data.quote) + '</p>' +
+                  '<p class="quote-sub reveal d1">' + esc(data.quoteSub) + '</p>' +
+                '</section>';
+
+        data.couples.forEach(function (c, idx) {
+          html += '<section class="shoot" id="couple-' + idx + '">';
+          html +=   '<h2 class="shoot-title reveal">' + esc(c.name) + '</h2>';
+          if (c.sub) html += '<p class="shoot-sub reveal d1">' + esc(c.sub) + '</p>';
+          if (c.copy && c.copy.length) {
+            html += '<div class="shoot-copy reveal d2">';
+            c.copy.forEach(function (p) { html += '<p>' + p + '</p>'; });
+            html += '</div>';
+          }
+          html +=   '<div class="gal-wrap reveal">';
+          html +=     '<button class="gal-btn gal-prev" data-dir="-1" data-target="couple-' + idx + '" aria-label="Previous">&#8249;</button>';
+          html +=     '<button class="gal-btn gal-next" data-dir="1" data-target="couple-' + idx + '" aria-label="Next">&#8250;</button>';
+          html +=     '<div class="gallery" data-gallery="couple-' + idx + '">';
+          c.photos.forEach(function (src, i) {
+            html += '<div class="gal-item"><img src="' + esc(src) + '" alt="' + esc(c.name) + ' ' + (i + 1) + '" /></div>';
+          });
+          html +=     '</div>';
+          html +=   '</div>';
+          html += '</section>';
+        });
+
+        contentEl.innerHTML = html;
+
+        // ----- REVEAL ON SCROLL -----
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll(".reveal").forEach(function (el) { obs.observe(el); });
+
+        // ----- MOBILE MENU -----
+        var mobBtn = document.getElementById("mobBtn");
+        var mobDrop = document.getElementById("mobDrop");
+        if (mobBtn) {
+          mobBtn.addEventListener("click", function (e) { e.stopPropagation(); mobDrop.classList.toggle("open"); });
+          document.addEventListener("click", function () { mobDrop.classList.remove("open"); });
+        }
+
+        // ----- HORIZONTAL CAROUSEL — infinite auto-scroll -----
+        document.querySelectorAll(".gallery").forEach(function (gal) {
+          var originals = Array.from(gal.children);
+          var loopWidth = 0;
+          originals.forEach(function (n) { var c = n.cloneNode(true); c.setAttribute("data-clone","1"); gal.appendChild(c); });
+          originals.forEach(function (n) { var c = n.cloneNode(true); c.setAttribute("data-clone","1"); gal.appendChild(c); });
+
+          function measureLoop() {
+            var gap = parseFloat(getComputedStyle(gal).columnGap || getComputedStyle(gal).gap) || 0;
+            loopWidth = originals.reduce(function (acc, el) { return acc + el.getBoundingClientRect().width + gap; }, 0);
+          }
+          function seedMiddle() { if (loopWidth > 0) gal.scrollLeft = loopWidth; }
+          function normalize() {
+            if (loopWidth <= 0) return;
+            if (gal.scrollLeft >= loopWidth * 2) gal.scrollLeft -= loopWidth;
+            else if (gal.scrollLeft < loopWidth) gal.scrollLeft += loopWidth;
+          }
+          measureLoop();
+          setTimeout(seedMiddle, 0);
+          setTimeout(function () { measureLoop(); seedMiddle(); }, 300);
+          gal.querySelectorAll("img").forEach(function (im) {
+            if (!im.complete) im.addEventListener("load", function () { measureLoop(); }, { once: true });
+          });
+          window.addEventListener("resize", function () { measureLoop(); });
+
+          var paused = false, resumeTimer = null;
+          setInterval(function () {
+            if (paused || loopWidth <= 0) return;
+            gal.scrollLeft += 1;
+            normalize();
+          }, 30);
+          function pauseAuto(ms) {
+            paused = true;
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(function () { paused = false; }, ms || 4000);
+          }
+          gal.addEventListener("mouseenter", function () { paused = true; });
+          gal.addEventListener("mouseleave", function () { paused = false; });
+          gal.addEventListener("touchstart", function () { pauseAuto(5000); }, { passive: true });
+          gal.addEventListener("wheel", function () { pauseAuto(3000); }, { passive: true });
+          gal.addEventListener("scroll", normalize, { passive: true });
+          gal._pauseAuto = pauseAuto;
+          gal._normalize = normalize;
+        });
+
+        function animateScroll(gal, to, duration) {
+          if (gal._anim) clearInterval(gal._anim);
+          var start = gal.scrollLeft, change = to - start, t0 = Date.now();
+          function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+          gal._anim = setInterval(function () {
+            var p = Math.min(1, (Date.now() - t0) / duration);
+            gal.scrollLeft = start + change * ease(p);
+            if (p >= 1) { clearInterval(gal._anim); gal._anim = null; if (gal._normalize) gal._normalize(); }
+          }, 16);
+        }
+
+        document.querySelectorAll(".gal-btn").forEach(function (btn) {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var dir = parseInt(btn.dataset.dir, 10);
+            var target = btn.dataset.target;
+            var gal = document.querySelector('.gallery[data-gallery="' + target + '"]');
+            if (!gal) return;
+            if (gal._pauseAuto) gal._pauseAuto(4000);
+            var item = gal.querySelector(".gal-item");
+            var step = item ? item.getBoundingClientRect().width + 10 : 240;
+            animateScroll(gal, gal.scrollLeft + dir * step, 420);
+          });
+        });
+
+        // ----- LIGHTBOX -----
+        var lb = document.getElementById("lb");
+        var lbImg = document.getElementById("lbImg");
+        var lbCount = document.getElementById("lbCount");
+        var current = [], idx = 0;
+
+        function collectGallery(el) {
+          var gal = el.closest("[data-gallery]");
+          if (!gal) {
+            var img = el.tagName === "IMG" ? el : el.querySelector("img");
+            return { list: [{ src: img.src, alt: img.alt }], start: 0 };
+          }
+          var items = Array.from(gal.querySelectorAll(".gal-item")).filter(function (n) { return !n.hasAttribute("data-clone"); });
+          var list = items.map(function (n) { var i = n.querySelector("img"); return { src: i.src, alt: i.alt }; });
+          var thisSrc = (el.tagName === "IMG" ? el : el.querySelector("img")).src;
+          var start = list.findIndex(function (o) { return o.src === thisSrc; });
+          return { list: list, start: Math.max(0, start) };
+        }
+        function openLb(el) {
+          var res = collectGallery(el);
+          current = res.list; idx = res.start;
+          render();
+          lb.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+        function closeLb() {
+          lb.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+        function render() {
+          if (!current.length) return;
+          lbImg.classList.add("swapping");
+          setTimeout(function () {
+            lbImg.src = current[idx].src;
+            lbImg.alt = current[idx].alt || "";
+            lbCount.textContent = (idx + 1) + " / " + current.length;
+            lbImg.classList.remove("swapping");
+          }, 120);
+        }
+        function lbNext() { if (current.length) { idx = (idx + 1) % current.length; render(); } }
+        function lbPrev() { if (current.length) { idx = (idx - 1 + current.length) % current.length; render(); } }
+
+        document.addEventListener("click", function (e) {
+          var item = e.target.closest(".gal-item");
+          if (item) openLb(item);
+        });
+        var heroImg = document.querySelector(".page-hero img");
+        if (heroImg) heroImg.addEventListener("click", function () { openLb(heroImg); });
+
+        document.getElementById("lbClose").addEventListener("click", closeLb);
+        document.getElementById("lbNext").addEventListener("click", lbNext);
+        document.getElementById("lbPrev").addEventListener("click", lbPrev);
+        lb.addEventListener("click", function (e) {
+          if (e.target === lb || e.target.classList.contains("lb-stage")) closeLb();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (!lb.classList.contains("open")) return;
+          if (e.key === "Escape") closeLb();
+          else if (e.key === "ArrowRight") lbNext();
+          else if (e.key === "ArrowLeft") lbPrev();
+        });
+        var tx = 0;
+        lb.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+        lb.addEventListener("touchend", function (e) {
+          var dx = e.changedTouches[0].clientX - tx;
+          if (Math.abs(dx) > 40) { dx < 0 ? lbNext() : lbPrev(); }
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
